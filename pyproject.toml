@@ -1,0 +1,10 @@
+[project]
+name = "etf-knapsack"
+version = "0.1.0"
+description = "Calculate ETF buy options combinations"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "toml==0.10.2",
+    "yfinance>=1.0",
+]

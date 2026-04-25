@@ -8,20 +8,41 @@ This Python scripts is here to help.
 
 Simply edit the `info.toml` (a sample one is provided) file with your personal portfolio allocation and savings amount and run the script.
 
-## Usage
+## Usage with Docker
+Run the published image:
+
+```
+docker run --rm -it -v "$PWD/info.toml:/app/info.toml" ghcr.io/vlanx/etf-knapsack:latest --budget <budget>
+```
+
+or
+
+```
+docker run --rm -it -v "$PWD/info.toml:/app/info.toml" ghcr.io/vlanx/etf-knapsack:latest --budget <budget> --window <window>
+```
+
+The bind mount keeps your local `info.toml` as the source of truth, including when you confirm an order and the script updates your allocation.
+
+To build the image locally instead:
+
+```
+docker build -t etf-knapsack .
+```
+
+## Usage without Docker
 ```
 cd ~
-git clone "https://github.com/dot-1q/etf_knapsack.git"
-cd etf_knapsack
-pip3 install -r requirements.txt
+git clone "https://github.com/vlanx/etf-knapsack.git"
+cd etf-knapsack
+uv sync
 ```
 
 ```
-python3 knapsack.py --budget <budget>
+uv run python knapsack.py --budget <budget>
 ```
 or
 ```
-python3 knapsack.py --budget <budget> --window <window>
+uv run python knapsack.py --budget <budget> --window <window>
 ```
 
 ## Configuration file `info.toml`
